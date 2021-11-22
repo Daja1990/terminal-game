@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout Terminal Hacking Game</title>
+    <link rel="icon" type="image/x-icon" href="/termlogo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <div id="blackout" class="blackout"></div>
+        <div id="introbox" class="introbox">
+            <div id="introtxt" class="introtxt">
+            <div id="intro" class="intro"></div>
+        </div>
+        <div id="pclocked" class="pclocked"></div>
+        <div id="wintxt" class="wintxt"></div>
+    </div>
+
+    <div id="top" class="top">
+        <div id="pctxt" class="pctxt"></div>
+        <div id="lifecount" class="lifecount"></div>
+        <div class="lifeboxes"></div>
+    </div>
+
+    <div id="grid" class="grid">
+        <div id ="c1" class="c1">
+            <p>0xF650</p>
+            <p>0xF4E1</p>
+            <p>0xF903</p>
+            <p>0xF7C4</p>
+            <p>0xF465</p>
+            <p>0xF8B1</p>
+            <p>0xF979</p>
+            <p>0xF3CA</p>
+            <p>0xF5EA</p>
+            <p>0xF662</p>
+            <p>0xF7D2</p>
+            <p>0xF242</p>
+            <p>0xF38A</p>
+            <p>0xF6F3</p>
+            <p>0xF793</p>
+            <p>0xF9AF</p>
+            <p>0xF431</p>
+            <p>0xF861</p>
+            <p>0xF118</p>
+            <p>0xF8F8</p>
+            <p>0xF90C</p>
+        </div>
+
+    <div class="c2">
+        <div id="words"></div>
+    </div>
+
+    <div id="c3" class="c3">
+        <p>0xF9C4</p>
+        <p>0xF221</p>
+        <p>0xF1E5</p>
+        <p>0xF692</p>
+        <p>0xF9B3</p>
+        <p>0xF401</p>
+        <p>0xF0C5</p>
+        <p>0xF9F4</p>
+        <p>0xF487</p>
+        <p>0xF1A4</p>
+        <p>0xF730</p>
+        <p>0xF3CE</p>
+        <p>0xF821</p>
+        <p>0xF123</p>
+        <p>0xF3D4</p>
+        <p>0xF939</p>
+        <p>0xF652</p>
+        <p>0xF66C</p>
+        <p>0xF75D</p>
+        <p>0xF331</p>
+        <p>0xF383</p>
+    </div>
+    <div class="c4">
+        <div id="words2"></div>
+    </div>
+
+    <div class="c5">
+        <div id="numbercount" class="numbercount"></div><br />
+    </div>
+    </div>
+
+</div>
+
+<div class="pcbottom">
+    <div class="grit gritfirst"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="grit"></div>
+    <div class="borders">
+    <p>Power</p>
+    <div onclick="blackout();" class="turnon">
+        <div class="turnlittle"></div>
+    </div>
+    </div>
+</div>
+
+<div id="helpmodal" class="modal">
+
+    <div class="modal-content">
+    <span class="close">&times;</span><br/><br/>
+    <h2>Rules of the Game:</h2><br/>
+    <p>In order to hack the terminal, you need to find the correct word.</p><br/><br/>
+    <p>Multiple words will be present within the code. If a wrong one is chosen, an infobox will be displayed, showing how many of the words match.<br/> For example, if the correct word is "Bread" and you choose "Fried" 2/5 of the word is correct (R and E are in the same place).</p><br/><br/>
+    <p>Look for the duds to make it easier - special signs wrapped in either { }, [ ], ( ) or < >. These will replenish life or remove a wrong word. </p><br/><br/><br/>
+    </div>
+</div>
+
+<div class="query"><p>This is a remake of a mini-game from the game Fallout 3 / New Vegas. Due to the size emulating that of the game, no mobile and/or tablet version is avaliable. Please watch it on a PC for the full experience!</p></div>
+
+</body>
+<script src="app.js"></script>
+</html>
