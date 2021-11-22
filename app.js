@@ -96,8 +96,18 @@ element.classList.toggle("blackscreen");
 }
 
 function runterminal(valueToUse, random, charnbr) {
-// document.getElementById("instawin").innerHTML = random;
-// ^^ Remove when build ^^
+// Typewriter effect
+pcArray = [`<p>ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</p><br />
+<p>ENTER PASSWORD NOW</p>`];
+let textPosition = 0; 
+let speed = 10;
+
+function typewriter(){
+document.querySelector("#pctxt").innerHTML = pcArray[0].substring(0, textPosition);
+  if(textPosition++ != pcArray[0].length)
+  setTimeout(typewriter, speed);
+}typewriter();
+
 // Concats randomsigns array together a number of times
 const makeRepeated = (arr, repeats) =>
 [].concat(...Array.from({ length: repeats }, () => arr));
@@ -137,17 +147,6 @@ const secondHalf = concater.slice(-half);
 introbox.style.display = "none";
 topblock.style.display = "block";
 grid.style.display = "grid";
-
-// Typewriter effect
-pcArray = [`<p>ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</p><br />
-<p>ENTER PASSWORD NOW</p>`];
-
-function typewriter(){
-document.querySelector("#pctxt").innerHTML = pcArray[0].substring(0, textPosition);
-  if(textPosition++ != pcArray[0].length)
-  setTimeout(typewriter, speed);
-}typewriter();
-
 
 lifecount.innerHTML = life + `<p>ATTEMPT(S) LEFT</p>`;
 lifeboxes.innerHTML = 
@@ -195,6 +194,69 @@ document.getElementById('box'+life).style.display = "none";
 }
 }
 
+// Checks if you are out of life
+if (life === 0){
+document.getElementById('words').style.display = "none";
+document.getElementById('words2').style.display = "none";
+document.getElementById('box4').style.display = "none";
+document.getElementById('pctxt').style.display = "none";
+
+let lossArray = [`<p>TERMINAL LOCKED</p> <br/><br/> <p>PLEASE CONTACT AN ADMINISTRATOR</p><br/><br/> <p>The right word was: ${random}</p><br/><br/> <div class="startup" onclick="restart();">Try Again</div>`];
+let textPosition = 0; 
+let speed = 15;
+
+// Typewriter effect for loss text
+function typewriterLoss(){
+document.querySelector("#pclocked").innerHTML = lossArray[0].substring(0, textPosition) + '<span>\u25AE</span>';
+if(textPosition++ != lossArray[0].length)
+setTimeout(typewriterLoss, speed);
+} typewriterLoss();
+hide();
+}
+
+var str1 = random;
+var str2 = this.id;
+
+const getSameLetters = (a, b) => {
+// MinLength iterates until end of smallest words (Math.min).
+const minLength = Math.min(str1.length, str2.length);
+let sameLetters = 0
+// Iteration from 0 to min length, each loop cycle compares letters on same index from a and b strings. If it matches, increment and continue loop
+for (let i = 0; i < minLength; i++) {
+  if (a[i] === b[i]) {
+    sameLetters++
+    }
+  }
+return sameLetters
+}
+
+numbercount.innerHTML = this.id + `<br/><p>Entry Denied.</p><br/>` + getSameLetters(str1, str2) + "/" + str1.length + " correct";
+lifecount.innerHTML = life + `<p>ATTEMPT(S) LEFT</p>`;
+
+// If winning condition is met
+if(getSameLetters(str1, str2) === str1.length){
+let lossArray = [`<p>PASSWORD CORRECT</p> <br/><br/> <p>Congratulations, you have successfully hacked the terminal!</p><br/><br/> <p>The right word was: ${random}</p><br/><br/> <div class="startup" onclick="restart();">Try Again</div>`];
+let textPosition = 0; 
+let speed = 15;
+
+function typewriterLoss(){
+document.querySelector("#pclocked").innerHTML = lossArray[0].substring(0, textPosition) + '<span>\u25AE</span>';
+  if(textPosition++ != lossArray[0].length)
+  setTimeout(typewriterLoss, speed);
+} typewriterLoss();
+hide();
+}
+
+function removeword(){
+document.getElementById(wordtoremove).innerHTML = `. . . .`;
+numbercount.innerHTML = `<p class="allowance">Dud removed.</p>`;
+}
+
+function removewordtwo(){
+document.getElementById(wordtoremovetwo).innerHTML = `. . . .`;
+numbercount.innerHTML = `<p class="allowance">Dud removed.</p>`;
+}
+
 // Rules for each dud
 if (this.id === '[ # ? - ] '){
 removeword();
@@ -235,70 +297,12 @@ newhp();
   }
 }
 
-// Checks if you are out of life
-if (life === 0){
-document.getElementById('words').style.display = "none";
-document.getElementById('words2').style.display = "none";
-document.getElementById('box4').style.display = "none";
-document.getElementById('pctxt').style.display = "none";
-
-let lossArray = [`<p>TERMINAL LOCKED</p> <br/><br/> <p>PLEASE CONTACT AN ADMINISTRATOR</p><br/><br/> <p>The right word was: ${random}</p><br/><br/> <div class="startup" onclick="restart();">Try Again</div>`];
-let textPosition = 0; 
-let speed = 15;
-
-// Typewriter effect for loss text
-function typewriterLoss(){
-document.querySelector("#pclocked").innerHTML = lossArray[0].substring(0, textPosition) + '<span>\u25AE</span>';
-if(textPosition++ != lossArray[0].length)
-setTimeout(typewriterLoss, speed);
-} typewriterLoss();
-hide();
-}
-
-let str1 = random;
-let str2 = this.id;
-
-const getSameLetters = (a, b) => {
-// MinLength iterates until end of smallest words (Math.min).
-const minLength = Math.min(str1.length, str2.length);
-let sameLetters = 0
-// Iteration from 0 to min length, each loop cycle compares letters on same index from a and b strings. If it matches, increment and continue loop
-for (let i = 0; i < minLength; i++) {
-  if (a[i] === b[i]) {
-  sameLetters++
-  }
-}
-return sameLetters
-}
-
-// Print message if wrong word is clicked
-numbercount.innerHTML = this.id + `<br/><p>Entry Denied.</p><br/>` + getSameLetters(str1, str2) + "/" + str1.length + " correct";
-lifecount.innerHTML = life + `<p>ATTEMPT(S) LEFT</p>`;
-
-// If winning condition is met
-if(getSameLetters(str1, str2) === str1.length){
-let lossArray = [`<p>PASSWORD CORRECT</p> <br/><br/> <p>Congratulations, you have successfully hacked the terminal!</p><br/><br/> <p>The right word was: ${random}</p><br/><br/> <div class="startup" onclick="restart();">Try Again</div>`];
-let textPosition = 0; 
-let speed = 15;
-
 function typewriterWin(){
 document.querySelector("#pclocked").innerHTML = lossArray[0].substring(0, textPosition) + '<span>\u25AE</span>';
   if(textPosition++ != lossArray[0].length)
   setTimeout(typewriterWin, speed);
 } typewriterWin();
 hide();
-}
-
-// Functions for text if dud is removed
-function removeword(){
-document.getElementById(wordtoremove).innerHTML = `. . . .`;
-numbercount.innerHTML = `<p class="allowance">Dud removed.</p>`;
-}
-
-function removewordtwo(){
-document.getElementById(wordtoremovetwo).innerHTML = `. . . .`;
-numbercount.innerHTML = `<p class="allowance">Dud removed.</p>`;
-}
 }
 }
 
